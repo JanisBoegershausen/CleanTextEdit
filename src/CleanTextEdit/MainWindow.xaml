@@ -1,0 +1,18 @@
+﻿<Window x:Class="CleanTextEdit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CleanTextEdit"
+        mc:Ignorable="d"
+        Title="Clean Edit" Height="450" Width="800" 
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="CanResizeWithGrip" Topmost="True"
+        MouseDown="Window_MouseDown">
+    <Grid Background="Transparent" Focusable="False">
+        <Rectangle Fill="Black" Opacity="0.5" />
+        <TextBox Background="Transparent" Foreground="White" BorderThickness="0" Margin="10"
+                TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                Text="Hey" FontSize="25" CaretBrush="White" />
+    </Grid>
+</Window>
