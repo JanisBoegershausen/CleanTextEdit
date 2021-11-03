@@ -9,6 +9,9 @@
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         ResizeMode="CanResizeWithGrip" Topmost="True"
         MouseDown="Window_MouseDown" Cursor="Hand">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveCommandExecuted"/>
+    </Window.CommandBindings>
     <Grid Background="Transparent" Focusable="False">
         <Rectangle Fill="Black" Opacity="0.5" />
         <TextBox Name="mainTextField" Background="Transparent" Foreground="White" BorderThickness="0" Margin="10"

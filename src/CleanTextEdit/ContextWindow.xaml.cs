@@ -17,24 +17,27 @@ using System.Windows.Shapes;
 namespace CleanTextEdit
 {
     /// <summary>
-    /// Interaktionslogik für ContextWindow.xaml
+    /// Logic for custom context menu which opens on rightclick
     /// </summary>
     public partial class ContextWindow : Window
     {
         /// <summary>
-        /// Path to the current file that is beieng worked on (if any)
+        /// Reference to the main editor window
         /// </summary>
-        private string currentWorkingPath = "";
+        private MainWindow mainWindow;
 
         public ContextWindow()
         {
+            mainWindow = ((MainWindow)Application.Current.MainWindow);
             InitializeComponent();
         }
 
+        // ---------------------------------------------
+        // --------- Area for button callbacks----------
+        // ---------------------------------------------
         private void Save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!String.IsNullOrEmpty(currentWorkingPath) && File.Exists(currentWorkingPath))
-                SaveAs(currentWorkingPath);
+            mainWindow.TrySaveCurrent();
             this.Hide();
         }
 
@@ -42,7 +45,7 @@ namespace CleanTextEdit
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-                SaveAs(openFileDialog.FileName);
+                mainWindow.SaveAs(openFileDialog.FileName);
             this.Hide();
         }
 
@@ -50,20 +53,8 @@ namespace CleanTextEdit
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-                Load(openFileDialog.FileName);
+                mainWindow.Load(openFileDialog.FileName);
             this.Hide();
-        }
-
-        void SaveAs(string path)
-        {
-            File.WriteAllText(path, ((MainWindow)Application.Current.MainWindow).mainTextField.Text);
-            currentWorkingPath = path;
-        }
-
-        void Load(string path)
-        {
-            currentWorkingPath = path;
-            ((MainWindow)Application.Current.MainWindow).mainTextField.Text = File.ReadAllText(path);
         }
     }
 }
