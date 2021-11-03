@@ -57,6 +57,11 @@ namespace CleanTextEdit
             this.Hide();
         }
 
+        private void Close_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            mainWindow.Close();
+        }
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
