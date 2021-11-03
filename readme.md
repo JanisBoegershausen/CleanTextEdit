@@ -1,7 +1,9 @@
 # Features
 - Basic Text Editor
-- Save/Load
+- "SaveAs..." & "Load..."
+- "Save" (To save the opened file)
 
 # Todo
-- Option to stay on top
-- Custom border
+- Ctrl-S
+- Options window
+- Option to toggle "stay on top"

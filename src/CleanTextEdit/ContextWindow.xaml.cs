@@ -21,6 +21,11 @@ namespace CleanTextEdit
     /// </summary>
     public partial class ContextWindow : Window
     {
+        /// <summary>
+        /// Path to the current file that is beieng worked on (if any)
+        /// </summary>
+        private string currentWorkingPath = "";
+
         public ContextWindow()
         {
             InitializeComponent();
@@ -28,9 +33,16 @@ namespace CleanTextEdit
 
         private void Save_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (!String.IsNullOrEmpty(currentWorkingPath) && File.Exists(currentWorkingPath))
+                SaveAs(currentWorkingPath);
+            this.Hide();
+        }
+
+        private void SaveAs_MouseDown(object sender, MouseButtonEventArgs e)
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-                File.WriteAllText(openFileDialog.FileName, ((MainWindow)Application.Current.MainWindow).mainTextField.Text);
+                SaveAs(openFileDialog.FileName);
             this.Hide();
         }
 
@@ -38,8 +50,20 @@ namespace CleanTextEdit
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-                ((MainWindow)Application.Current.MainWindow).mainTextField.Text = File.ReadAllText(openFileDialog.FileName);
+                Load(openFileDialog.FileName);
             this.Hide();
+        }
+
+        void SaveAs(string path)
+        {
+            File.WriteAllText(path, ((MainWindow)Application.Current.MainWindow).mainTextField.Text);
+            currentWorkingPath = path;
+        }
+
+        void Load(string path)
+        {
+            currentWorkingPath = path;
+            ((MainWindow)Application.Current.MainWindow).mainTextField.Text = File.ReadAllText(path);
         }
     }
 }
