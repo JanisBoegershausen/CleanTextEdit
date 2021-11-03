@@ -53,7 +53,13 @@ namespace CleanTextEdit
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
-                mainWindow.Load(openFileDialog.FileName);
+                mainWindow.TryLoad(openFileDialog.FileName);
+            this.Hide();
+        }
+
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
             this.Hide();
         }
     }

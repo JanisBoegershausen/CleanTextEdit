@@ -36,9 +36,20 @@ namespace CleanTextEdit
 
         public MainWindow()
         {
+            // Initialize
             InitializeComponent();
-            contextWindow = new ContextWindow();
+
+            // Try loading the settings from the settings file
+            if (!Settings.TryLoadFromFile(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "cte.ini")))
+                Settings.current = new Settings(); // Create new default settings
+
             InitializeHotkeys();
+
+            // Create an instance of the contextMenu to use every time the user right clicks
+            contextWindow = new ContextWindow();
+
+            // Try opening the last opened file
+            TryLoad(Settings.current.startupPath);
         }
 
         private void InitializeHotkeys()
@@ -92,10 +103,19 @@ namespace CleanTextEdit
             currentWorkingPath = path;
         }
 
-        public void Load(string path)
+        public void TryLoad(string path)
         {
-            currentWorkingPath = path;
-            mainTextField.Text = File.ReadAllText(path);
+            if (!String.IsNullOrEmpty(path) && File.Exists(path))
+            {
+                currentWorkingPath = path;
+                mainTextField.Text = File.ReadAllText(path);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Settings.current.startupPath = currentWorkingPath;
+            Settings.SaveCurrent(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "cte.ini"));
         }
     }
 }

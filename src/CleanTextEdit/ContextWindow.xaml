@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ContextWindow" Height="400" Width="200"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        ResizeMode="CanResizeWithGrip" Topmost="True">
+        ResizeMode="CanResizeWithGrip" Topmost="True" Deactivated="Window_Deactivated">
     <Grid>
         <Rectangle Fill="Black" Opacity="0.5"></Rectangle>
         <ListBox Background="Transparent">
