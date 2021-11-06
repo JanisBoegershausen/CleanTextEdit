@@ -8,3 +8,6 @@
 # Todo
 - Options window
 - Option to toggle "stay on top"
+- Ctrl+N -> New Document
+- Ctrl+O -> Open
+- F3 -> Search
