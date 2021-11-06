@@ -2,12 +2,10 @@
 - Basic Text Editor
 - "SaveAs..." & "Load..."
 - "Save" (To save the opened file)
-- Ctrl-S
+- Hotkeys: Ctrl-S, Ctrl+N, Ctrl+O
 - Automatically open last file on startup
 
 # Todo
 - Options window
 - Option to toggle "stay on top"
-- Ctrl+N -> New Document
-- Ctrl+O -> Open
 - F3 -> Search
