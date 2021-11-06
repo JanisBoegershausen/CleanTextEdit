@@ -11,6 +11,7 @@
         MouseDown="Window_MouseDown" Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:MainWindow.NewCommand}" Executed="NewCommandExecuted"/>
     </Window.CommandBindings>
     <Grid Background="Transparent" Focusable="False">
         <Rectangle Fill="Black" Opacity="0.5" />

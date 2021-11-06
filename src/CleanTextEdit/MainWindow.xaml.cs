@@ -23,6 +23,7 @@ namespace CleanTextEdit
     {
         // Hotkey Commands
         public static RoutedCommand SaveCommand = new RoutedCommand();
+        public static RoutedCommand NewCommand = new RoutedCommand();
 
         /// <summary>
         /// The context window which opens on rightclick
@@ -74,6 +75,7 @@ namespace CleanTextEdit
         private void InitializeHotkeys()
         {
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
         }
 
         // -----------------------------------------
@@ -83,6 +85,11 @@ namespace CleanTextEdit
         private void SaveCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             TrySaveCurrent();
+        }
+
+        private void NewCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            New();
         }
 
         // -----------------------------------------
@@ -106,6 +113,16 @@ namespace CleanTextEdit
         // -----------------------------------------
         // ----------- Editor Utilities ------------
         // -----------------------------------------
+
+        /// <summary>
+        /// Starts a new document, by clearing the current working directory and the text field
+        /// </summary>
+        public void New()
+        {
+            currentWorkingPath = "";
+            mainTextField.Text = "";
+        }
+
 
         /// <summary>
         /// Saves to the currentWorkingPath, if it is set.
