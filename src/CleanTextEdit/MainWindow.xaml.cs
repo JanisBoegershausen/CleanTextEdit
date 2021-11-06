@@ -43,14 +43,32 @@ namespace CleanTextEdit
             if (!Settings.TryLoadFromFile(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "cte.ini")))
                 Settings.current = new Settings(); // Create new default settings
 
+            // Add an event listener to use as a main loop
+            CompositionTarget.Rendering += OnCompositionTargetRendering;
+
             InitializeHotkeys();
 
             // Create an instance of the contextMenu to use every time the user right clicks
             contextWindow = new ContextWindow();
 
             // Try opening the last opened file
+            WriteToLog("Trying to load startup file... ");
             if (!TryLoad(Settings.current.startupPath))
                 mainTextField.Text = "Hello there! \nWelcome to the cleanest text editor in town. \nUse right-click to access the menu. ";
+
+            WriteToLog("Startup Complete.");
+        }
+
+        /// <summary>
+        /// Called every frame before the application renders. 
+        /// </summary>
+        void OnCompositionTargetRendering(object sender, EventArgs e)
+        {
+            // Fade all log entries to become transparent over time
+            for (int i = 0; i < LogContainer.Children.Count; i++)
+            {
+                LogContainer.Children[i].Opacity -= 0.003f; // Warning: This is framerate dependant!
+            }
         }
 
         private void InitializeHotkeys()
@@ -96,12 +114,15 @@ namespace CleanTextEdit
         {
             if (!String.IsNullOrEmpty(currentWorkingPath) && File.Exists(currentWorkingPath))
                 SaveAs(currentWorkingPath);
+            else
+                WriteToLog("Can't save! No file is opened.");
         }
 
         public void SaveAs(string path)
         {
             File.WriteAllText(path, mainTextField.Text);
             currentWorkingPath = path;
+            WriteToLog("Saved!");
         }
 
         public bool TryLoad(string path)
@@ -110,9 +131,11 @@ namespace CleanTextEdit
             {
                 currentWorkingPath = path;
                 mainTextField.Text = File.ReadAllText(path);
+                WriteToLog("File has been opened.");
                 return true;
             } else
             {
+                WriteToLog("Failed to load file!");
                 return false;
             }
         }
@@ -121,6 +144,26 @@ namespace CleanTextEdit
         {
             Settings.current.startupPath = currentWorkingPath;
             Settings.SaveCurrent(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "cte.ini"));
+        }
+    
+        /// <summary>
+        /// Writes the given string to the editors log, located at the bottom right. 
+        /// </summary>
+        public void WriteToLog(string message)
+        {
+            // Create the label
+            Label messageLabel = new Label();
+            messageLabel.Content = message;
+            messageLabel.Foreground = Brushes.White;
+            
+            // Add it to the log container as a child
+            LogContainer.Children.Add(messageLabel);
+
+            // Limit the log count to three
+            if (LogContainer.Children.Count > 3)
+            {
+                LogContainer.Children.Remove(LogContainer.Children[0]);
+            }
         }
     }
 }
