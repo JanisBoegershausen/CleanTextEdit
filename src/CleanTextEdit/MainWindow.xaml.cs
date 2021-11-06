@@ -49,7 +49,8 @@ namespace CleanTextEdit
             contextWindow = new ContextWindow();
 
             // Try opening the last opened file
-            TryLoad(Settings.current.startupPath);
+            if (!TryLoad(Settings.current.startupPath))
+                mainTextField.Text = "Hello there! \nWelcome to the cleanest text editor in town. \nUse right-click to access the menu. ";
         }
 
         private void InitializeHotkeys()
@@ -103,12 +104,16 @@ namespace CleanTextEdit
             currentWorkingPath = path;
         }
 
-        public void TryLoad(string path)
+        public bool TryLoad(string path)
         {
             if (!String.IsNullOrEmpty(path) && File.Exists(path))
             {
                 currentWorkingPath = path;
                 mainTextField.Text = File.ReadAllText(path);
+                return true;
+            } else
+            {
+                return false;
             }
         }
 

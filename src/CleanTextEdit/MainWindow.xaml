@@ -16,7 +16,7 @@
         <Rectangle Fill="Black" Opacity="0.5" />
         <TextBox Name="mainTextField" Background="Transparent" Foreground="White" BorderThickness="0" Margin="10"
                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
-                Text="Hey! Welcome to the cleanest editor in town." FontSize="25" CaretBrush="White" 
+                FontSize="25" CaretBrush="White" 
                 MouseRightButtonUp="TextBox_MouseRightButtonUp" ContextMenu="{x:Null}"/>
     </Grid>
 </Window>
