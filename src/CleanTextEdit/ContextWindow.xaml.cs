@@ -35,6 +35,13 @@ namespace CleanTextEdit
         // ---------------------------------------------
         // --------- Area for button callbacks----------
         // ---------------------------------------------
+
+        private void New_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            mainWindow.New();
+            this.Hide();
+        }
+
         private void Save_MouseDown(object sender, MouseButtonEventArgs e)
         {
             mainWindow.TrySaveCurrent();
@@ -51,9 +58,7 @@ namespace CleanTextEdit
 
         private void Load_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                mainWindow.TryLoad(openFileDialog.FileName);
+            mainWindow.ShowLoadFileDialog();
             this.Hide();
         }
 

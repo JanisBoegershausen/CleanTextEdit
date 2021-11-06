@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace CleanTextEdit
     {
         // Hotkey Commands
         public static RoutedCommand SaveCommand = new RoutedCommand();
+        public static RoutedCommand OpenCommand = new RoutedCommand();
         public static RoutedCommand NewCommand = new RoutedCommand();
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace CleanTextEdit
         private void InitializeHotkeys()
         {
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            OpenCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
             NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
         }
 
@@ -85,6 +88,11 @@ namespace CleanTextEdit
         private void SaveCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             TrySaveCurrent();
+        }
+
+        private void OpenCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ShowLoadFileDialog();
         }
 
         private void NewCommandExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -181,6 +189,13 @@ namespace CleanTextEdit
             {
                 LogContainer.Children.Remove(LogContainer.Children[0]);
             }
+        }
+
+        public void ShowLoadFileDialog()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+                TryLoad(openFileDialog.FileName);
         }
     }
 }
