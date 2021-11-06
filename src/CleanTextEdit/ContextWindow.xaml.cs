@@ -1,18 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CleanTextEdit
 {
@@ -50,9 +39,10 @@ namespace CleanTextEdit
 
         private void SaveAs_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                mainWindow.SaveAs(openFileDialog.FileName);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text|*.txt";
+            if (saveFileDialog.ShowDialog() == true)
+                mainWindow.SaveAs(saveFileDialog.FileName);
             this.Hide();
         }
 
