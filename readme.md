@@ -10,6 +10,15 @@ Since the default editor has no features though (especially no dark theme...), I
 - Automatically open the last file on startup
 
 ## Todo
-- Options window
-- Option to toggle "stay on top"
+- Warning when trying to exit with unsaved text
 - F3 -> Search
+- Autosaving
+- Custom scrollbar
+- Options window
+- Option: Toggle "Stay On Top"
+- Option: Opacity
+- Option: Autosave toggle
+- Option: Autosave interval
+- Option: Start with windows
+- Option: Toggle "Stay On Bottom"
+- Option: Background & Foreground Colors
