@@ -27,6 +27,10 @@ namespace CleanTextEdit
         /// Path to the current file that is beieng worked on (if any)
         /// </summary>
         private string currentWorkingPath = "";
+        /// <summary>
+        /// If true, the user is warned about unsaved changed on the next attempt to close the application. 
+        /// </summary>
+        private bool unsavedChangesWarning = false;
 
         public MainWindow()
         {
@@ -109,6 +113,11 @@ namespace CleanTextEdit
             contextWindow.Focus();
         }
 
+        private void mainTextField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            unsavedChangesWarning = true;
+        }
+
         // -----------------------------------------
         // ----------- Editor Utilities ------------
         // -----------------------------------------
@@ -138,6 +147,7 @@ namespace CleanTextEdit
         {
             File.WriteAllText(path, mainTextField.Text);
             currentWorkingPath = path;
+            unsavedChangesWarning = false;
             WriteToLog("Saved!");
         }
 
@@ -147,6 +157,7 @@ namespace CleanTextEdit
             {
                 currentWorkingPath = path;
                 mainTextField.Text = File.ReadAllText(path);
+                unsavedChangesWarning = false;
                 WriteToLog("File has been opened.");
                 return true;
             } else
@@ -158,8 +169,18 @@ namespace CleanTextEdit
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Settings.current.startupPath = currentWorkingPath;
-            Settings.SaveCurrent(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "cte.ini"));
+            if (unsavedChangesWarning)
+            {
+                e.Cancel = true;
+                WriteToLog("Unsaved changed! Are you sure?");
+                unsavedChangesWarning = false;
+            }
+            else
+            {
+                contextWindow.Close();
+                Settings.current.startupPath = currentWorkingPath;
+                Settings.SaveCurrent(Path.Combine(Directory.GetCurrentDirectory(), "cte.ini"));
+            }
         }
     
         /// <summary>

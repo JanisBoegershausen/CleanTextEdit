@@ -54,7 +54,6 @@ namespace CleanTextEdit
 
         private void Close_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
             mainWindow.Close();
         }
 

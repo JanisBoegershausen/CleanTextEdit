@@ -18,8 +18,8 @@
         <Rectangle Fill="Black" Opacity="0.5" />
         <TextBox Name="mainTextField" Background="Transparent" Foreground="White" BorderThickness="0" Margin="10"
                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
-                FontSize="25" CaretBrush="White" 
-                MouseRightButtonUp="TextBox_MouseRightButtonUp" ContextMenu="{x:Null}"/>
+                FontSize="25" CaretBrush="White" ContextMenu="{x:Null}"
+                MouseRightButtonUp="TextBox_MouseRightButtonUp" TextChanged="mainTextField_TextChanged"/>
 
         <StackPanel Name="LogContainer" IsHitTestVisible="False" Background="Transparent" 
                     FlowDirection="LeftToRight" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="200" Margin="40 10">
