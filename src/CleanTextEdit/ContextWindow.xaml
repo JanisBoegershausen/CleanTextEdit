@@ -15,6 +15,7 @@
             <Label Foreground="White" Width="185" FontSize="15" MouseDown="Save_MouseDown">Save</Label>
             <Label Foreground="White" Width="185" FontSize="15" MouseDown="SaveAs_MouseDown">Save As...</Label>
             <Label Foreground="White" Width="185" FontSize="15" MouseDown="Load_MouseDown">Load...</Label>
+            <Label Foreground="White" Width="185" FontSize="15" MouseDown="Settings_MouseDown">Settings</Label>
             <Label Foreground="White" Width="185" FontSize="15" MouseDown="Close_MouseDown">Close</Label>
         </ListBox>
     </Grid>

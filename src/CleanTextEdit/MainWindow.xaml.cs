@@ -22,6 +22,7 @@ namespace CleanTextEdit
         /// The context window which opens on rightclick
         /// </summary>
         static ContextWindow contextWindow;
+        public static SettingsWindow settingsWindow;
 
         /// <summary>
         /// Path to the current file that is beieng worked on (if any)
@@ -46,8 +47,9 @@ namespace CleanTextEdit
 
             InitializeHotkeys();
 
-            // Create an instance of the contextMenu to use every time the user right clicks
+            // Create an instance of the contextMenu to use every time the user right clicks and same for the settings window
             contextWindow = new ContextWindow();
+            settingsWindow = new SettingsWindow();
 
             // Try opening the last opened file
             WriteToLog("Trying to load startup file... ");
@@ -178,6 +180,7 @@ namespace CleanTextEdit
             else
             {
                 contextWindow.Close();
+                settingsWindow.Close();
                 Settings.current.startupPath = currentWorkingPath;
                 Settings.SaveCurrent(Path.Combine(Directory.GetCurrentDirectory(), "cte.ini"));
             }

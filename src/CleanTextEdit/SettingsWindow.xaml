@@ -1,0 +1,30 @@
+﻿<Window x:Class="CleanTextEdit.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CleanTextEdit"
+        mc:Ignorable="d"
+        Title="Settings" Height="450" Width="420" 
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="NoResize" Topmost="True" Cursor="Hand"
+        MouseDown="DragArea_MouseDown">
+    <Grid>
+        <Rectangle Fill="Black" Opacity="0.5" />
+        <Button Margin="400,0,0,0" Height="20" Width="20" VerticalAlignment="Top"  Background="Transparent" Foreground="White" Click="Close_Click">X</Button>
+        <ListBox Background="Transparent" Margin="0 20 0 0" BorderBrush="Transparent">
+            <StackPanel Orientation="Horizontal" >
+                <Label Foreground="White" Width="200" FontSize="15">Start with Windows</Label>
+                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15">Enable</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Foreground="White" Width="200" FontSize="15">Autosave</Label>
+                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15">Enable</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Foreground="White" Width="200" FontSize="15">Background Opacity</Label>
+                <Slider Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"></Slider>
+            </StackPanel>
+        </ListBox>
+    </Grid>
+</Window>
