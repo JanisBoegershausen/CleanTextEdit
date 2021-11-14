@@ -8,9 +8,9 @@ Since the default editor has no features though (especially no dark theme...), I
 - "Save" (To save the opened file)
 - Hotkeys: Ctrl-S, Ctrl+N, Ctrl+O
 - Automatically open the last file on startup
-
-## Todo
 - Warning when trying to exit with unsaved text
+- 
+## Todo
 - F3 -> Search
 - Autosaving
 - Custom scrollbar
