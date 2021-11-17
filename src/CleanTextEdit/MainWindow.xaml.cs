@@ -51,6 +51,12 @@ namespace CleanTextEdit
             contextWindow = new ContextWindow();
             settingsWindow = new SettingsWindow();
 
+            // Apply loaded settings
+            BackgroundRectangle.Opacity = Settings.current.opacity;
+
+            // Set the option sliders to match the loaded settigns
+            settingsWindow.Slider_Opacity.Value = BackgroundRectangle.Opacity;
+
             // Try opening the last opened file
             WriteToLog("Trying to load startup file... ");
             if (!TryLoad(Settings.current.startupPath))

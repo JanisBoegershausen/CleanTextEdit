@@ -19,10 +19,17 @@ namespace CleanTextEdit
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        /// <summary>
+        /// Reference to the main editor window
+        /// </summary>
+        private MainWindow mainWindow;
+
         public SettingsWindow()
         {
+            mainWindow = ((MainWindow)Application.Current.MainWindow);
             InitializeComponent();
         }
+
         private void DragArea_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -32,6 +39,16 @@ namespace CleanTextEdit
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+        }
+
+        private void Opacity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            // If the old value is zero, this is beeing set for the first time from settings
+            if (e.OldValue != 0)
+            {
+                Settings.current.opacity = (float)e.NewValue;
+                mainWindow.BackgroundRectangle.Opacity = Settings.current.opacity;
+            }
         }
     }
 }

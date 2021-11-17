@@ -12,10 +12,12 @@ namespace CleanTextEdit
         public static Settings current;
 
         public string startupPath { get; set; }
+        public float opacity { get; set; }
 
         public Settings ()
         {
             startupPath = "";
+            opacity = 0.5f;
         }
 
         public static void SaveCurrent(string path)

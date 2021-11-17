@@ -15,7 +15,7 @@
         <CommandBinding Command="{x:Static local:MainWindow.NewCommand}" Executed="NewCommandExecuted"/>
     </Window.CommandBindings>
     <Grid Background="Transparent" Focusable="False">
-        <Rectangle Fill="Black" Opacity="0.5" />
+        <Rectangle Name="BackgroundRectangle" Fill="Black" Opacity="0.5" />
         <TextBox Name="mainTextField" Background="Transparent" Foreground="White" BorderThickness="0" Margin="10"
                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
                 FontSize="25" CaretBrush="White" ContextMenu="{x:Null}"

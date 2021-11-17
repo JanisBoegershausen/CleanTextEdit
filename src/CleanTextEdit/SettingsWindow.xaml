@@ -23,7 +23,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <Label Foreground="White" Width="200" FontSize="15">Background Opacity</Label>
-                <Slider Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"></Slider>
+                <Slider Name="Slider_Opacity" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Value="0.5" Minimum="0.1" Maximum="1" ValueChanged="Opacity_ValueChanged"></Slider>
             </StackPanel>
         </ListBox>
     </Grid>
