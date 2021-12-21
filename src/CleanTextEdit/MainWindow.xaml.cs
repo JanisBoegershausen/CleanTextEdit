@@ -60,7 +60,9 @@ namespace CleanTextEdit
             BackgroundRectangle.Opacity = Settings.current.opacity;
 
             // Set the option sliders to match the loaded settigns
-            settingsWindow.Slider_Opacity.Value = BackgroundRectangle.Opacity;
+            settingsWindow.Slider_Opacity.Value = Settings.current.opacity;
+            settingsWindow.Checkbox_Autosave.IsChecked = Settings.current.autosave;
+            settingsWindow.Checkbox_AlwaysOnTop.IsChecked = Settings.current.alwaysOnTop;
 
             // Try opening the last opened file
             WriteToLog("Trying to load startup file... ");
@@ -85,6 +87,9 @@ namespace CleanTextEdit
                     TrySaveCurrent();
                 }
             }
+
+            // Update window settings
+            Topmost = Settings.current.alwaysOnTop && (!MainWindow.settingsWindow.IsVisible);
 
             // Fade all log entries to become transparent over time
             for (int i = 0; i < LogContainer.Children.Count; i++)

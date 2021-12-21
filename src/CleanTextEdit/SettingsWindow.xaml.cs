@@ -55,5 +55,10 @@ namespace CleanTextEdit
         {
             Settings.current.autosave = (bool)Checkbox_Autosave.IsChecked;
         }
+
+        private void AlwaysOnTop_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.current.alwaysOnTop = (bool)Checkbox_AlwaysOnTop.IsChecked;
+        }
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Clean Edit" Height="450" Width="800" 
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        ResizeMode="CanResizeWithGrip" Topmost="True" Cursor="Hand"
+        ResizeMode="CanResizeWithGrip" Cursor="Hand"
         MouseDown="Window_MouseDown" Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveCommandExecuted"/>

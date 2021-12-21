@@ -60,7 +60,6 @@ namespace CleanTextEdit
         private void Settings_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow.settingsWindow.Show();
-            MainWindow.settingsWindow.Focus();
         }
 
         private void Window_Deactivated(object sender, EventArgs e)

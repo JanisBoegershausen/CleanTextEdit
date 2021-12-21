@@ -18,6 +18,10 @@
                 <CheckBox Name="Checkbox_Autosave" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Click="Autosave_Click">Enable</CheckBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
+                <Label Foreground="White" Width="200" FontSize="15">Always On Top</Label>
+                <CheckBox Name="Checkbox_AlwaysOnTop" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Click="AlwaysOnTop_Click">Enable</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
                 <Label Foreground="White" Width="200" FontSize="15">Background Opacity</Label>
                 <Slider Name="Slider_Opacity" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Value="0.5" Minimum="0.1" Maximum="1" ValueChanged="Opacity_ValueChanged"></Slider>
             </StackPanel>
