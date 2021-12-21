@@ -14,12 +14,8 @@
         <Button Margin="400,0,0,0" Height="20" Width="20" VerticalAlignment="Top"  Background="Transparent" Foreground="White" Click="Close_Click">X</Button>
         <ListBox Background="Transparent" Margin="0 20 0 0" BorderBrush="Transparent">
             <StackPanel Orientation="Horizontal" >
-                <Label Foreground="White" Width="200" FontSize="15">Start with Windows</Label>
-                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15">Enable</CheckBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" >
                 <Label Foreground="White" Width="200" FontSize="15">Autosave</Label>
-                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15">Enable</CheckBox>
+                <CheckBox Name="Checkbox_Autosave" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Click="Autosave_Click">Enable</CheckBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" >
                 <Label Foreground="White" Width="200" FontSize="15">Background Opacity</Label>

@@ -13,13 +13,18 @@ namespace CleanTextEdit
 
         public string startupPath { get; set; }
         public float opacity { get; set; }
+        public bool autosave { get; set; }
 
         public Settings ()
         {
             startupPath = "";
             opacity = 0.5f;
+            autosave = false;
         }
 
+        /// <summary>
+        /// Save the current settings to the given path. 
+        /// </summary>
         public static void SaveCurrent(string path)
         {
             Console.WriteLine("Saving Settings");
@@ -30,14 +35,21 @@ namespace CleanTextEdit
             System.IO.File.WriteAllText(path, jsonString);
         }
 
+        /// <summary>
+        /// Try to load settings from a given file path. 
+        /// </summary>
+        /// <returns>Rather or not the loading succeeded. </returns>
         public static bool TryLoadFromFile(string path)
         {
+            // Check if the path is valid
             if (String.IsNullOrEmpty(path) || !System.IO.File.Exists(path))
                 return false;
 
+            // Deserialize the content of the file. (Should check if the content of the file is valid)
             string jsonString = System.IO.File.ReadAllText(path);
             Settings loadedSettings = JsonSerializer.Deserialize<Settings>(jsonString);
 
+            // Apply the settings
             current = loadedSettings;
             return true;
         }

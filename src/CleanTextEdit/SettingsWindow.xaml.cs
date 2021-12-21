@@ -50,5 +50,10 @@ namespace CleanTextEdit
                 mainWindow.BackgroundRectangle.Opacity = Settings.current.opacity;
             }
         }
+
+        private void Autosave_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.current.autosave = (bool)Checkbox_Autosave.IsChecked;
+        }
     }
 }

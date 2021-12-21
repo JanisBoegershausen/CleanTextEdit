@@ -33,6 +33,11 @@ namespace CleanTextEdit
         /// </summary>
         private bool unsavedChangesWarning = false;
 
+        /// <summary>
+        /// Point in time where the last autosave occured. 
+        /// </summary>
+        private DateTime lastSaveTime;
+
         public MainWindow()
         {
             // Initialize
@@ -70,6 +75,17 @@ namespace CleanTextEdit
         /// </summary>
         void OnCompositionTargetRendering(object sender, EventArgs e)
         {
+            // Handle autosaving every 60 seconds if it is enabled
+            if(Settings.current.autosave && (DateTime.Now - lastSaveTime).TotalSeconds >= 60f)
+            {
+                // Only try to save if there is a currentWorkingPath. This is to avoid spamming the log
+                if (!String.IsNullOrEmpty(currentWorkingPath) && File.Exists(currentWorkingPath))
+                {
+                    WriteToLog("Trying to autosave...");
+                    TrySaveCurrent();
+                }
+            }
+
             // Fade all log entries to become transparent over time
             for (int i = 0; i < LogContainer.Children.Count; i++)
             {
@@ -146,19 +162,35 @@ namespace CleanTextEdit
         public void TrySaveCurrent()
         {
             if (!String.IsNullOrEmpty(currentWorkingPath) && File.Exists(currentWorkingPath))
+            {
                 SaveAs(currentWorkingPath);
+            }
             else
+            {
                 WriteToLog("Can't save! No file is opened.");
+            }
         }
 
+        /// <summary>
+        /// Save the written text to a file at the given path. 
+        /// </summary>
         public void SaveAs(string path)
         {
+            // Save the content of the editor to the given path
             File.WriteAllText(path, mainTextField.Text);
             currentWorkingPath = path;
             unsavedChangesWarning = false;
+
+            // Output user message to log
             WriteToLog("Saved!");
+
+            // Set lastSaveTime to now
+            lastSaveTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Try loading the content of a file at the given path into the editor. 
+        /// </summary>
         public bool TryLoad(string path)
         {
             if (!String.IsNullOrEmpty(path) && File.Exists(path))
@@ -166,7 +198,12 @@ namespace CleanTextEdit
                 currentWorkingPath = path;
                 mainTextField.Text = File.ReadAllText(path);
                 unsavedChangesWarning = false;
+
                 WriteToLog("File has been opened.");
+
+                // Set lastSaveTime to now
+                lastSaveTime = DateTime.Now;
+
                 return true;
             } else
             {
