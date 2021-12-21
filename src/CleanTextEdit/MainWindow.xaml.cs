@@ -17,6 +17,8 @@ namespace CleanTextEdit
         public static RoutedCommand SaveCommand = new RoutedCommand();
         public static RoutedCommand OpenCommand = new RoutedCommand();
         public static RoutedCommand NewCommand = new RoutedCommand();
+        public static RoutedCommand ZoomInCommand = new RoutedCommand();
+        public static RoutedCommand ZoomOutCommand = new RoutedCommand();
 
         /// <summary>
         /// The context window which opens on rightclick
@@ -103,6 +105,8 @@ namespace CleanTextEdit
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             OpenCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
             NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            ZoomInCommand.InputGestures.Add(new KeyGesture(Key.Add, ModifierKeys.Control));
+            ZoomOutCommand.InputGestures.Add(new KeyGesture(Key.Subtract, ModifierKeys.Control));
         }
 
         // -----------------------------------------
@@ -122,6 +126,16 @@ namespace CleanTextEdit
         private void NewCommandExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             New();
+        }
+
+        private void ZoomInCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ZoomIn();
+        }
+
+        private void ZoomOutCommandExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ZoomOut();
         }
 
         // -----------------------------------------
@@ -215,6 +229,22 @@ namespace CleanTextEdit
                 WriteToLog("Failed to load file!");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Increase the font size of the edited text.
+        /// </summary>
+        public void ZoomIn()
+        {
+            mainTextField.FontSize += 1;
+        }
+
+        /// <summary>
+        /// Decrease the font size of the edited text.
+        /// </summary>
+        public void ZoomOut()
+        {
+            mainTextField.FontSize -= 1;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -13,6 +13,8 @@
         <CommandBinding Command="{x:Static local:MainWindow.SaveCommand}" Executed="SaveCommandExecuted"/>
         <CommandBinding Command="{x:Static local:MainWindow.OpenCommand}" Executed="OpenCommandExecuted"/>
         <CommandBinding Command="{x:Static local:MainWindow.NewCommand}" Executed="NewCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ZoomInCommand}" Executed="ZoomInCommandExecuted"/>
+        <CommandBinding Command="{x:Static local:MainWindow.ZoomOutCommand}" Executed="ZoomOutCommandExecuted"/>
     </Window.CommandBindings>
     <Grid Background="Transparent" Focusable="False">
         <Rectangle Name="BackgroundRectangle" Fill="Black" Opacity="0.5" />
