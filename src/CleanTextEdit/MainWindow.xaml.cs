@@ -20,6 +20,14 @@ namespace CleanTextEdit
         public static RoutedCommand ZoomInCommand = new RoutedCommand();
         public static RoutedCommand ZoomOutCommand = new RoutedCommand();
 
+        // Audio data which is loaded on startup
+        System.Media.SoundPlayer soundPlayer_type1;
+        System.Media.SoundPlayer soundPlayer_type2;
+        System.Media.SoundPlayer soundPlayer_type3;
+
+        // Random handler for all random events
+        Random random;
+
         /// <summary>
         /// The context window which opens on rightclick
         /// </summary>
@@ -42,6 +50,8 @@ namespace CleanTextEdit
 
         public MainWindow()
         {
+            random = new Random();
+
             // Initialize
             InitializeComponent();
 
@@ -54,6 +64,8 @@ namespace CleanTextEdit
 
             InitializeHotkeys();
 
+            InitializeAudios();
+
             // Create an instance of the contextMenu to use every time the user right clicks and same for the settings window
             contextWindow = new ContextWindow();
             settingsWindow = new SettingsWindow();
@@ -65,6 +77,7 @@ namespace CleanTextEdit
             settingsWindow.Slider_Opacity.Value = Settings.current.opacity;
             settingsWindow.Checkbox_Autosave.IsChecked = Settings.current.autosave;
             settingsWindow.Checkbox_AlwaysOnTop.IsChecked = Settings.current.alwaysOnTop;
+            settingsWindow.Checkbox_PlayTypingSound.IsChecked = Settings.current.playTypingSound;
 
             // Try opening the last opened file
             WriteToLog("Trying to load startup file... ");
@@ -107,6 +120,23 @@ namespace CleanTextEdit
             NewCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
             ZoomInCommand.InputGestures.Add(new KeyGesture(Key.Add, ModifierKeys.Control));
             ZoomOutCommand.InputGestures.Add(new KeyGesture(Key.Subtract, ModifierKeys.Control));
+        }
+
+        private void InitializeAudios()
+        {
+            // Initialize objects to read audio files from embedded resources
+            System.Reflection.Assembly executingAssemgly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.IO.Stream audioStream;
+    
+            // Load type sounds
+            audioStream = executingAssemgly.GetManifestResourceStream("CleanTextEdit.Resources.Audio.TypeSound1.wav");
+            soundPlayer_type1 = new System.Media.SoundPlayer(audioStream);
+
+            audioStream = executingAssemgly.GetManifestResourceStream("CleanTextEdit.Resources.Audio.TypeSound2.wav");
+            soundPlayer_type2 = new System.Media.SoundPlayer(audioStream);
+
+            audioStream = executingAssemgly.GetManifestResourceStream("CleanTextEdit.Resources.Audio.TypeSound3.wav");
+            soundPlayer_type3 = new System.Media.SoundPlayer(audioStream);
         }
 
         // -----------------------------------------
@@ -159,6 +189,24 @@ namespace CleanTextEdit
         private void mainTextField_TextChanged(object sender, TextChangedEventArgs e)
         {
             unsavedChangesWarning = true;
+
+            if (Settings.current.playTypingSound)
+            {
+                switch (random.Next(3))
+                {
+                    case 0:
+                        soundPlayer_type1.Play();
+                        break;
+                    case 1:
+                        soundPlayer_type2.Play();
+                        break;
+                    case 2:
+                        soundPlayer_type3.Play();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         // -----------------------------------------

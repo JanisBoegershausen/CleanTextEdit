@@ -60,5 +60,10 @@ namespace CleanTextEdit
         {
             Settings.current.alwaysOnTop = (bool)Checkbox_AlwaysOnTop.IsChecked;
         }
+
+        private void PlayTypingSound_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.current.playTypingSound = (bool)Checkbox_PlayTypingSound.IsChecked;
+        }
     }
 }

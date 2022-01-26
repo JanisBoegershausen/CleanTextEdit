@@ -15,6 +15,7 @@ namespace CleanTextEdit
         public bool autosave { get; set; }
         public bool alwaysOnTop { get; set; }
         public float opacity { get; set; }
+        public bool playTypingSound { get; set; }
 
         public Settings ()
         {
@@ -22,6 +23,7 @@ namespace CleanTextEdit
             opacity = 0.5f;
             autosave = false;
             alwaysOnTop = false;
+            playTypingSound = true;
         }
 
         /// <summary>

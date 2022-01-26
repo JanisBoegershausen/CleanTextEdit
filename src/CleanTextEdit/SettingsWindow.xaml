@@ -25,6 +25,10 @@
                 <Label Foreground="White" Width="200" FontSize="15">Background Opacity</Label>
                 <Slider Name="Slider_Opacity" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Value="0.5" Minimum="0.1" Maximum="1" ValueChanged="Opacity_ValueChanged"></Slider>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Foreground="White" Width="200" FontSize="15">Play Typing Sound</Label>
+                <CheckBox Name="Checkbox_PlayTypingSound" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Click="PlayTypingSound_Click">Enable</CheckBox>
+            </StackPanel>
         </ListBox>
     </Grid>
 </Window>
