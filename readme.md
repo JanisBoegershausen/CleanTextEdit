@@ -2,6 +2,12 @@
 Welcome to this (so far unnamed) text editor. I started developing this because I tend to use windows default editor for taking temporary notes, and some writing, since I feel like the minimal design keeps me from getting distracted.
 Since the default editor has no features though (especially no dark theme...), I decide to make this. A very clean, but functional, text editor for taking notes or writing documents. 
 
+# Transparent and always on top
+![editor](https://raw.githubusercontent.com/JanisBoegershausen/CleanTextEdit/main/promotional/screenshot_1.PNG)
+
+# With a multitude of settings
+![settings](https://raw.githubusercontent.com/JanisBoegershausen/CleanTextEdit/main/promotional/screenshot_2.PNG)
+
 ## Features
 - Basic Text Editor
 - "SaveAs..." & "Load..."
