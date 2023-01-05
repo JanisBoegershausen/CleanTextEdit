@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace CleanTextEdit
 {
@@ -34,8 +36,9 @@ namespace CleanTextEdit
             Console.WriteLine("Saving Settings");
             if (!System.IO.File.Exists(path))
                 System.IO.File.Create(path).Close();
-            
-            string jsonString = JsonSerializer.Serialize<Settings>(current);
+
+            string jsonString = JsonConvert.SerializeObject(current);
+
             System.IO.File.WriteAllText(path, jsonString);
         }
 
@@ -51,7 +54,7 @@ namespace CleanTextEdit
 
             // Deserialize the content of the file. (Should check if the content of the file is valid)
             string jsonString = System.IO.File.ReadAllText(path);
-            Settings loadedSettings = JsonSerializer.Deserialize<Settings>(jsonString);
+            Settings loadedSettings = JsonConvert.DeserializeObject<Settings>(jsonString);
 
             // Apply the settings
             current = loadedSettings;
